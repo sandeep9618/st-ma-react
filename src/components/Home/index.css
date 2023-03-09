@@ -1,0 +1,52 @@
+.details-bg-container {
+  height: 100vh;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.student-btn {
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: black;
+  color: #efe6f0;
+  width: 100px;
+  margin-right: 20px;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px;
+}
+.teacher-btn {
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #ffb20d;
+  color: black;
+  width: 100px;
+  margin-right: 20px;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid #ffb20d;
+}
+.details-card {
+  height: 30vh;
+  width: 30vw;
+  background-color: #efe6f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.details-heading {
+  color: white;
+  font-size: 35px;
+  margin-bottom: 0px;
+}
+.details-para {
+  color: #ffb20d;
+  font-size: 20px;
+  font-weight: 500;
+}

@@ -15,16 +15,20 @@ class Home extends Component {
         </p>
         <div className="details-card">
           <div>
-            <button
-              className="student-btn"
-              type="button"
-              onClick={this.onClickTogoStudentRoute}
-            >
-              student
-            </button>
-            <button className="teacher-btn" type="button">
-              Teacher
-            </button>
+            <Link to="/student-login">
+              <button
+                className="student-btn"
+                type="button"
+                onClick={this.onClickTogoStudentRoute}
+              >
+                student
+              </button>
+            </Link>
+            <Link to="/teacher-login">
+              <button className="teacher-btn" type="button">
+                Teacher
+              </button>
+            </Link>
           </div>
         </div>
       </div>

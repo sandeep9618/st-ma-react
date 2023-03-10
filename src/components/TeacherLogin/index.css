@@ -1,4 +1,4 @@
-.login-form-container {
+.teacher-login-form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,7 +6,7 @@
   height: 100vh;
   width: 100%;
   margin: auto;
-  background-image: linear-gradient(to left, #f043d0, #f0439f, #f0295e);
+  background-image: linear-gradient(to left, #1da865, #56d698, #66ccad);
 }
 
 .form-container {
@@ -61,7 +61,7 @@
   outline: none;
 }
 
-.login-button {
+.teacher-login-button {
   font-family: 'Roboto';
   font-weight: bold;
   font-size: 14px;
@@ -70,7 +70,7 @@
   width: 100%;
   margin-top: 40px;
   margin-bottom: 2px;
-  background-image: linear-gradient(to left, #f043d0, #f0439f, #f0295e);
+  background-image: linear-gradient(to left, #1da865, #56d698, #66ccad);
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -89,4 +89,14 @@
   font-size: 14px;
   text-decoration: none;
   margin-left: 6px;
+}
+.error-message {
+  align-self: start;
+  font-size: 12px;
+  margin-top: 3px;
+  margin-bottom: 0px;
+  font-family: 'Roboto';
+  font-size: 12px;
+  line-height: 16px;
+  color: #ff0b37;
 }

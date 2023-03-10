@@ -1,31 +1,70 @@
 import {Component} from 'react'
-import Cookies from 'js-cookie'
 import {Link} from 'react-router-dom'
 
 import './index.css'
 
-class LoginForm extends Component {
+class StudentLogin extends Component {
   state = {
-    username: '',
-    password: '',
+    usernameInput: '',
+    passwordInput: '',
     showSubmitError: false,
     errorMsg: '',
   }
 
   onChangeUsername = event => {
-    this.setState({username: event.target.value})
+    this.setState({usernameInput: event.target.value})
   }
 
   onChangePassword = event => {
-    this.setState({password: event.target.value})
+    this.setState({passwordInput: event.target.value})
+  }
+
+  onSetToLogin = () => {
+    const {usernameInput, passwordInput} = this.state
+    const storage = localStorage.getItem('student_info')
+    if (storage === null) {
+      this.setState({showSubmitError: true, errorMsg: 'please sign-up'})
+    } else {
+      const jsonData = JSON.parse(storage)
+      const {userName, password} = jsonData
+
+      if (userName !== usernameInput) {
+        this.setState({
+          showSubmitError: true,
+          errorMsg: 'Please enter a valid name',
+        })
+      } else if (password !== passwordInput) {
+        this.setState({
+          showSubmitError: true,
+          errorMsg: 'Please enter a valid password',
+        })
+      } else {
+        const {history} = this.props
+        history.replace('/student')
+      }
+    }
   }
 
   submitForm = async event => {
+    const {usernameInput, passwordInput} = this.state
     event.preventDefault()
+    if (usernameInput === '') {
+      this.setState({
+        showSubmitError: true,
+        errorMsg: 'Please enter a valid name',
+      })
+    } else if (passwordInput === '') {
+      this.setState({
+        showSubmitError: true,
+        errorMsg: 'Please enter a valid password',
+      })
+    } else {
+      this.onSetToLogin()
+    }
   }
 
   renderPasswordField = () => {
-    const {password} = this.state
+    const {passwordInput} = this.state
 
     return (
       <>
@@ -36,7 +75,7 @@ class LoginForm extends Component {
           type="password"
           id="password"
           className="password-input-field"
-          value={password}
+          value={passwordInput}
           onChange={this.onChangePassword}
           placeholder="Password"
         />
@@ -45,7 +84,7 @@ class LoginForm extends Component {
   }
 
   renderUsernameField = () => {
-    const {username} = this.state
+    const {usernameInput} = this.state
 
     return (
       <>
@@ -56,7 +95,7 @@ class LoginForm extends Component {
           type="text"
           id="username"
           className="username-input-field"
-          value={username}
+          value={usernameInput}
           onChange={this.onChangeUsername}
           placeholder="Username"
         />
@@ -75,16 +114,20 @@ class LoginForm extends Component {
           <button type="submit" className="login-button">
             Login
           </button>
+          {showSubmitError && <p className="error-message">*{errorMsg}</p>}
           <div className="sign-up-option-container">
             <p className="not-a-member">Not a member?</p>
             <Link to="/sign-in" className="sign-in-link">
               Signup now
             </Link>
           </div>
+          <Link to="/" className="link-item">
+            ---> Home
+          </Link>
         </form>
       </div>
     )
   }
 }
 
-export default LoginForm
+export default StudentLogin

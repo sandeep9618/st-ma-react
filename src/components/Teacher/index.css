@@ -1,0 +1,36 @@
+.teacher-bg-container {
+  height: 100vh;
+  padding: 3%;
+}
+.heading {
+  font-size: 30px;
+}
+.input {
+  padding: 8px;
+  width: 20%;
+  border: 1px solid;
+  outline: none;
+}
+.add-btn {
+  color: white;
+  background-color: blue;
+  border: 1px solid blue;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: 8px;
+  width: 70px;
+}
+.teacher-cal-container {
+  padding-left: 0px;
+  height: 70vh;
+  overflow-y: auto;
+}
+.question {
+  font-size: 16px;
+  font-weight: 700;
+}
+.answer {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 0px;
+}

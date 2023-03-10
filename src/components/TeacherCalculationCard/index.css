@@ -1,0 +1,10 @@
+.cal-task-teacher {
+  list-style-type: none;
+  background-color: #dcfcf7;
+  width: 60%;
+  height: 150px;
+  padding: 2%;
+  margin-top: 2%;
+  border-radius: 5px;
+  border: 2px solid #a5f0e3;
+}

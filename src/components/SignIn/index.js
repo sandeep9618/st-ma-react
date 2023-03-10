@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import Cookies from 'js-cookie'
+import {Link} from 'react-router-dom'
 
 import './index.css'
 
@@ -26,8 +26,14 @@ class SignIn extends Component {
     const {history} = this.props
     const {nameIp, passIp, type, gender} = this.state
     const userData = {userName: nameIp, password: passIp, type, gender}
-    Cookies.set('user_info', userData)
-    history.replace('/login')
+    const jsonData = JSON.stringify(userData)
+
+    if (type === 'teacher') {
+      localStorage.setItem('teacher_info', jsonData)
+    } else {
+      localStorage.setItem('student_info', jsonData)
+    }
+    this.setState({nameIp: '', passIp: '', type: '', gender: 'male'})
   }
 
   onSubmitData = event => {
@@ -107,6 +113,9 @@ class SignIn extends Component {
           <button type="submit" className="sign-up">
             Sign up
           </button>
+          <Link to="/" className="link-item">
+            ---> Home
+          </Link>
         </form>
       </div>
     )

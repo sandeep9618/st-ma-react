@@ -10,3 +10,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.link-item {
+  color: green;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: end;
+}

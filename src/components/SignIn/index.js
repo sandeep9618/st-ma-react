@@ -34,6 +34,7 @@ class SignIn extends Component {
       localStorage.setItem('student_info', jsonData)
     }
     this.setState({nameIp: '', passIp: '', type: '', gender: 'male'})
+    history.replace('/')
   }
 
   onSubmitData = event => {
@@ -51,6 +52,7 @@ class SignIn extends Component {
   }
 
   render() {
+    const {nameIp, passIp} = this.state
     return (
       <div className="sign-in-bg-container">
         <form className="sign-in-container" onSubmit={this.onSubmitData}>
@@ -62,6 +64,7 @@ class SignIn extends Component {
             id="username"
             className="username-input-field"
             placeholder="Username"
+            value={nameIp}
             onChange={this.onChangeUsernameIp}
           />
           <label className="input-label" htmlFor="password">
@@ -72,6 +75,7 @@ class SignIn extends Component {
             id="password"
             className="password-input-field"
             placeholder="Password"
+            value={passIp}
             onChange={this.onChangePasswordIp}
           />
           <label className="input-label" htmlFor="gender">

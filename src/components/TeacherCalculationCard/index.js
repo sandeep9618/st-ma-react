@@ -12,7 +12,6 @@ const TeacherCalculationCard = props => {
     solution = firstDigit * secondDigit
   } else {
     const round = firstDigit / secondDigit
-    console.log(round)
     solution = Math.floor(round)
   }
 

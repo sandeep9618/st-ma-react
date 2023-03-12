@@ -46,11 +46,36 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding-left: 2%;
   padding-right: 10%;
 }
 .header-text {
   font-size: 15px;
   cursor: pointer;
+}
+.questions-and-answers {
+  display: flex;
+  width: 100%;
+}
+.answer-container {
+  padding: 2%;
+}
+.student-answers-container-in-teacher {
+  padding-left: 0px;
+  height: 40vh;
+  overflow-y: auto;
+}
+.answer-item-in-teacher {
+  list-style-type: none;
+}
+.clear-btn-in-teacher {
+  background-color: orange;
+  padding: 8px;
+  cursor: pointer;
+  border: 0px;
+  outline: none;
+  color: white;
+  width: 150px;
+  border-radius: 5px;
 }

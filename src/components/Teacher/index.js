@@ -1,14 +1,27 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {FiLogOut} from 'react-icons/fi'
 
 import TeacherCalculationCard from '../TeacherCalculationCard'
 
 import './index.css'
 
+const AnswerItem = props => {
+  const {i} = props
+  const {answer, id} = i
+  return (
+    <li className="answer-item-in-teacher">
+      {id}) {answer}
+    </li>
+  )
+}
+
 class Teacher extends Component {
   state = {
     userInput: '',
     calculations: [],
+    studentAnswers: [],
+    studentDetails: {},
   }
 
   componentDidMount() {
@@ -21,10 +34,26 @@ class Teacher extends Component {
       const parsed = JSON.parse(items)
       this.setState({calculations: parsed})
     }
+    const jsonData = localStorage.getItem('student_answers')
+    if (jsonData !== null) {
+      const answersFromLocalstorage = JSON.parse(jsonData)
+      this.setState({studentAnswers: answersFromLocalstorage})
+    }
+    const studentDetails = localStorage.getItem('student_info')
+    if (studentDetails !== null) {
+      const convertingToparsed = JSON.parse(studentDetails)
+      this.setState({studentDetails: convertingToparsed})
+    }
   }
 
   onChangeInput = event => {
     this.setState({userInput: event.target.value})
+  }
+
+  onClearAllItems = () => {
+    localStorage.removeItem('teacher_cals')
+    localStorage.removeItem('student_answers')
+    this.setState({calculations: []})
   }
 
   onClickToAddCal = () => {
@@ -123,15 +152,40 @@ class Teacher extends Component {
     )
   }
 
+  renderAnswers = () => {
+    const {studentAnswers, studentDetails} = this.state
+    const {userName} = studentDetails
+    return (
+      studentAnswers.length !== 0 && (
+        <div className="answer-container">
+          <p>{userName}'s answers</p>
+          <ul className="student-answers-container-in-teacher">
+            {studentAnswers.map(i => (
+              <AnswerItem i={i} key={i.id} />
+            ))}
+          </ul>
+        </div>
+      )
+    )
+  }
+
   render() {
     const {userInput, calculations} = this.state
 
     return (
       <div className="bg-container-for-teacher">
         <div className="header">
-          <Link to="/" className="link-item">
-            <p className="header-text">Log out->> </p>
+          <Link to="/" className="link-item-student">
+            <p className="header-text-student">Logout</p>
+            <FiLogOut size={15} />
           </Link>
+          <button
+            className="clear-btn-in-teacher"
+            type="button"
+            onClick={this.onClearAllItems}
+          >
+            Clear Questions
+          </button>
         </div>
         <div className="teacher-bg-container">
           <h1 className="heading">Add Calculation</h1>
@@ -150,7 +204,10 @@ class Teacher extends Component {
               Add
             </button>
           </div>
-          {calculations.length !== 0 && this.renderCalculations()}
+          <div className="questions-and-answers">
+            {calculations.length !== 0 && this.renderCalculations()}
+            {this.renderAnswers()}
+          </div>
         </div>
       </div>
     )

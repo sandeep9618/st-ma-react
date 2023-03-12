@@ -24,11 +24,16 @@ class Student extends Component {
   onAddAnswerToState = obj => {
     const {id, answer} = obj
     const {answers} = this.state
-
     if (answers.length !== 0) {
-      const noDuplicates = answers.map(i => (i.id === id ? {...i, answer} : i))
+      const isIdMatched = answers.some(i => i.id === id)
+      if (isIdMatched === true) {
+        const remainingItems = answers.filter(i => i.id !== id)
+        const data = [...remainingItems, obj]
 
-      this.setState({answers: noDuplicates})
+        this.setState({answers: data})
+      } else {
+        this.setState({answers: [...answers, obj]})
+      }
     } else {
       this.setState({answers: [obj]})
     }
@@ -42,24 +47,24 @@ class Student extends Component {
   }
 
   renderQuestions = () => {
-    const {questions, answers, closePopUp} = this.state
-    return (
-      questions !== [] && (
-        <ul className="student-questions-container">
-          {questions.map(eachItem => (
-            <StudentCard
-              key={eachItem.id}
-              eachItem={eachItem}
-              onAddAnswerToState={this.onAddAnswerToState}
-            />
-          ))}
-        </ul>
-      )
+    const {questions, answers} = this.state
+    return questions !== null ? (
+      <ul className="student-questions-container">
+        {questions.map(eachItem => (
+          <StudentCard
+            key={eachItem.id}
+            eachItem={eachItem}
+            onAddAnswerToState={this.onAddAnswerToState}
+          />
+        ))}
+      </ul>
+    ) : (
+      <p className="optional">There is no questions here...</p>
     )
   }
 
   render() {
-    const {closePopUp} = this.state
+    const {closePopUp, answers} = this.state
     return (
       <div className="student-bg-container">
         <div className="header-student">

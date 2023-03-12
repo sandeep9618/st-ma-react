@@ -1,0 +1,35 @@
+.student-card {
+  list-style-type: none;
+  background-color: #fce6b6;
+  margin-left: 0px;
+  padding: 12px;
+  height: 130px;
+  margin-bottom: 15px;
+  border: 2px solid #fccc62;
+  border-radius: 10px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.add-answer-input {
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer;
+  height: 30px;
+  outline: none;
+  width: 20%;
+}
+.add-input-btn {
+  color: black;
+  background-color: #f5bfdd;
+  padding: 8px;
+  width: 60px;
+  border-radius: 5px;
+  border: 2px solid #fa89c7;
+  cursor: pointer;
+  outline: none;
+}
+.answer-input-container {
+  display: flex;
+  align-items: center;
+}
